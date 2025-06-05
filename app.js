@@ -3,28 +3,54 @@ const monitor = document.getElementById("monitor")
 let setdisplay1 = ""
 let setdisplay2 = ""
 let operator = ''
+let calcstate = 'normalcalculation'
 
 const calcbutton = document.querySelector(".calculate")
 
 function displayinmonitor(num){
 
-    if(operator == "" || operator.length == 0){
-        setdisplay1 += num
+    let state = calcstate
+
+    if(state == 'normalcalculation'){
+
+        if(operator == "" || operator.length == 0){
+            setdisplay1 += num
+            monitor.value = setdisplay1
+        }
+        else{
+            setdisplay2 += num
+            monitor.value = setdisplay2
+        }
+    }
+    else if(state == 'Multicalculation'){
+        setdisplay1 = num
+        setdisplay2 = ''
         monitor.value = setdisplay1
+        calcstate = 'normalcalculation'
     }
-    else{
-        setdisplay2 += num
-        monitor.value = setdisplay2
-    }
-    
+
     console.log(setdisplay1)
     console.log(setdisplay2)
     console.log(operator)
-
 }
 
 function setoperator(op){
-    operator = op
+
+    let state = calcstate
+
+    if(state == 'normalcalculation'){
+        operator = op
+    }
+    else{
+
+        operator = op
+        setdisplay2 = ''
+        calcstate = 'normalcalculation'
+    }
+
+
+    
+    
 }
 
 function calculate(e1,op,e2){
@@ -46,9 +72,8 @@ function calculate(e1,op,e2){
             break;
         }
 
-        setdisplay1 = ""
-        setdisplay2 = ""
-        operator = ''
+
+        calcstate = 'Multicalculation'
         setdisplay1 = answer
         monitor.value = setdisplay1
         console.log(setdisplay1)
@@ -63,6 +88,7 @@ function cancel(){
     setdisplay2 = ""
     operator = ''
     monitor.value = "0"
+    calcstate = 'normalcalculation'
 }
 
 calcbutton.addEventListener('click', ()=>{
