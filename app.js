@@ -1,4 +1,6 @@
 
+
+//declaration
 const monitor = document.getElementById("monitor")
 let setdisplay1 = ""
 let setdisplay2 = ""
