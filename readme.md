@@ -12,7 +12,6 @@ A basic calculator built using **HTML, CSS, and JavaScript**. It supports fundam
 1. Clone the repository:
    ```bash
    git clone https://github.com/Zallien/Calculator.git
-   or
-   Visit this https://zallien.github.io/Calculator/
+
 
 
